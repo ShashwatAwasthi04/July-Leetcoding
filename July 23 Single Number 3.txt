@@ -1,0 +1,49 @@
+class Solution(object):
+   def singleNumber(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[int]
+        """
+        xorOfAll = reduce(lambda x,y:x^y, nums)
+        differingBit = 0
+        for i in range(0,32):
+            if (xorOfAll & (1 << i)) != 0:
+                differingBit = i
+                break
+        uniq1 = uniq2 = 0
+        for i in nums:
+            if (i & (1 << differingBit)) == 0:
+                uniq1 = uniq1 ^ i
+            else:
+                uniq2 = uniq2 ^ i
+        return [uniq1, uniq2]
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
